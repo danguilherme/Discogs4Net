@@ -99,7 +99,7 @@ namespace Discogs4Net.Test
         }
 
         [Test]
-        public void ArtistClear()
+        public void ArtistNameFix()
         {
             var artist = client.GetArtistById(2930569);
 

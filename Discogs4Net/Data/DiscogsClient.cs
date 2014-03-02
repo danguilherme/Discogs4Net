@@ -3,6 +3,7 @@ using Discogs4Net.Data.Service;
 using Discogs4Net.Model;
 using Discogs4Net.Model.Artist;
 using Discogs4Net.Model.Release;
+using Discogs4Net.Model.Release.Variations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,10 +38,24 @@ namespace Discogs4Net.Data
             }
         }
 
+        private static MasterService _masterService;
+
+        private static MasterService MasterService
+        {
+            get
+            {
+                if (_masterService == null)
+                    _masterService = new MasterService();
+                return _masterService;
+            }
+        }
+
         public DiscogsClient(string appCode)
         {
             Request.AppCode = appCode;
         }
+
+        #region Artist
 
         public Artist GetArtistById(long id)
         {
@@ -52,9 +67,30 @@ namespace Discogs4Net.Data
             return ArtistService.Search(query, perPage, pageIndex);
         }
 
+        #endregion
+
+        #region Release/Master
+
         public Release GetReleaseById(long id)
         {
             return ReleaseService.GetById(id);
         }
+
+        public PaginatedList<ArtistRelease> GetReleasesByArtistId(long id, int perPage = 50, int pageIndex = 1)
+        {
+            return ReleaseService.GetByArtistId(id, perPage, pageIndex);
+        }
+
+        public Master GetMasterById(long id)
+        {
+            return MasterService.GetById(id);
+        }
+
+        public PaginatedList<MasterVersion> GetMasterVersions(long masterId, int perPage = 50, int pageIndex = 1)
+        {
+            return MasterService.GetVersions(masterId, perPage, pageIndex);
+        }
+
+        #endregion
     }
 }

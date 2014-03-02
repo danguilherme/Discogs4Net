@@ -93,7 +93,7 @@ namespace Discogs4Net.Data.Service
                 String artistName = item.Groups[1].Value
                     .Replace("+", " ")
                     .Substring(lastSlash + 1, item.Groups[1].Value.Length - lastSlash - 1);
-                var referencedArtist = Search(artistName, 1, 1).FirstOrDefault();
+                var referencedArtist = Search(artistName, 1, 1).Data.FirstOrDefault();
 
                 if (referencedArtist != null)
                     artist.Profile = artist.Profile.Replace(item.Groups[0].Value, String.Format("[a={0}]",
@@ -105,7 +105,7 @@ namespace Discogs4Net.Data.Service
 
             foreach (Match item in nameMatches)
             {
-                var referencedArtist = Search(item.Groups[1].Value, 1, 1).FirstOrDefault();
+                var referencedArtist = Search(item.Groups[1].Value, 1, 1).Data.FirstOrDefault();
 
                 if (referencedArtist != null)
                     artist.Profile = artist.Profile.Replace(item.Groups[0].Value, String.Format("[a={0}]",

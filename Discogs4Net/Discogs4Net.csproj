@@ -62,8 +62,13 @@
     <Compile Include="Model\ExternalUrl.cs" />
     <Compile Include="Model\Image.cs" />
     <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\Release\Variations\BasicRelease.cs" />
+    <Compile Include="Model\Release\Variations\ArtistRelease.cs" />
     <Compile Include="Model\Release\Format.cs" />
     <Compile Include="Model\Release\Identifier.cs" />
+    <Compile Include="Model\Release\Master.cs" />
+    <Compile Include="Model\Release\MasterRelease.cs" />
+    <Compile Include="Model\Release\Variations\MasterVersion.cs" />
     <Compile Include="Model\Release\Release.cs" />
     <Compile Include="Model\Release\ReleaseLabel.cs" />
     <Compile Include="Model\Release\Label.cs" />

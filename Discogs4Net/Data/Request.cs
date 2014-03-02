@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.IO;
 using Discogs4Net.Data;
 using Discogs4Net.Data.ContractResolver;
+using System.IO.Compression;
 
 namespace Discogs4Net.Data
 {
@@ -33,54 +34,27 @@ namespace Discogs4Net.Data
         /// <returns></returns>
         public string Get(string url)
         {
-            // Code from http://forum.guiadohacker.com.br/showthread.php?t=9358
+            // Code based on http://forum.guiadohacker.com.br/showthread.php?t=9358
             // By .IndependentResearch.
 
-            HttpWebResponse httpResponse = null;
-            StreamReader reader = null;
-
-            StringBuilder responseString = new StringBuilder();
+            String responseString = String.Empty;
             try
             {
                 // Creates the URL request
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                request.Timeout = 50000;
-                request.Proxy = new WebProxy();
+                request.Timeout = 10000;
                 request.Accept = "application/json";
-                request.UserAgent = "User-Agent";
+                request.UserAgent = AppCode;
+                request.Headers[HttpRequestHeader.AcceptEncoding] = "gzip; deflate";
 
-                // Receive data.
-                httpResponse = (HttpWebResponse)(request.GetResponse());
-                Stream responseStream = httpResponse.GetResponseStream();
-
-                System.Text.Encoding encoding = System.Text.Encoding.UTF8;
-
-                reader = new StreamReader(responseStream, encoding);
-
-                Char[] buffer = new Char[256];
-                int count = reader.Read(buffer, 0, buffer.Length);
-
-                // Populate what was received from response
-                while (count > 0)
-                {
-                    responseString.Append(new String(buffer, 0, count));
-                    count = reader.Read(buffer, 0, buffer.Length);
-                }
+                responseString = ExtractResponse(request.GetResponse());
             }
             catch (Exception)
             {
                 throw;
             }
-            finally
-            {
-                // Close all dependencies
-                if (httpResponse != null)
-                    httpResponse.Close();
-                if (reader != null)
-                    reader.Close();
-            }
 
-            return responseString.ToString();
+            return responseString;
         }
 
         public string Post(string url, object data)
@@ -131,6 +105,45 @@ namespace Discogs4Net.Data
             }
 
             return response;
+        }
+
+        private string ExtractResponse(WebResponse response)
+        {
+            string stringResponse = null;
+            if (!String.IsNullOrEmpty(response.Headers[HttpResponseHeader.ContentEncoding]))
+            {
+                using (var outStream = new MemoryStream())
+                    if (response.Headers[HttpResponseHeader.ContentEncoding].ToLower().Contains("gzip"))
+                        using (var zipStream = new GZipStream(response.GetResponseStream(),
+                            CompressionMode.Decompress))
+                        {
+                            zipStream.CopyTo(outStream);
+                            outStream.Seek(0, SeekOrigin.Begin);
+                            using (var reader = new StreamReader(outStream, Encoding.UTF8))
+                            {
+                                stringResponse = reader.ReadToEnd();
+                            }
+                        }
+                    else if (response.Headers[HttpResponseHeader.ContentEncoding].ToLower().Contains("deflate"))
+                        using (var zipStream = new DeflateStream(response.GetResponseStream(),
+                            CompressionMode.Decompress))
+                        {
+                            zipStream.CopyTo(outStream);
+                            outStream.Seek(0, SeekOrigin.Begin);
+                            using (var reader = new StreamReader(outStream, Encoding.UTF8))
+                            {
+                                stringResponse = reader.ReadToEnd();
+                            }
+                        }
+            }
+            else
+            {
+                using (var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
+                {
+                    stringResponse = reader.ReadToEnd();
+                }
+            }
+            return stringResponse;
         }
     }
 }
