@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discogs4Net", "Discogs4Net\Discogs4Net.csproj", "{DC3384AA-92C2-4258-9407-932A52F36E9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discogs4Net.Test", "Discogs4Net.Test\Discogs4Net.Test.csproj", "{DE736203-A0AC-46D7-9F57-B834EF1E29FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC3384AA-92C2-4258-9407-932A52F36E9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC3384AA-92C2-4258-9407-932A52F36E9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC3384AA-92C2-4258-9407-932A52F36E9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC3384AA-92C2-4258-9407-932A52F36E9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE736203-A0AC-46D7-9F57-B834EF1E29FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE736203-A0AC-46D7-9F57-B834EF1E29FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE736203-A0AC-46D7-9F57-B834EF1E29FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE736203-A0AC-46D7-9F57-B834EF1E29FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
