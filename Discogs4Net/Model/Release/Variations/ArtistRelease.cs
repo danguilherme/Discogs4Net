@@ -57,6 +57,11 @@ namespace Discogs4Net.Model.Release.Variations
 
             [JsonProperty(PropertyName = Keys.ResultsRoot)]
             public override List<ArtistRelease> Data { get; set; }
+
+            internal PaginatedList<ArtistRelease> ToPaginatedList()
+            {
+                return new PaginatedList<ArtistRelease>(Pagination, Data);
+            }
         }
     }
 }

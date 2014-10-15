@@ -74,6 +74,12 @@ namespace Discogs4Net.Data.Service
             return artist;
         }
 
+        /// <summary>
+        /// Fix artist's profile text formatting, as set in
+        /// http://www.discogs.com/help/account/text-formatting
+        /// </summary>
+        /// <param name="artist"></param>
+        /// <returns></returns>
         private Artist FixProfile(Artist artist)
         {
             if (String.IsNullOrEmpty(artist.Profile)) return artist;

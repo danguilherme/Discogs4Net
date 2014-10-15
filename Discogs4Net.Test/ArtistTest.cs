@@ -83,7 +83,7 @@ namespace Discogs4Net.Test
         [Test]
         public void SearchArtist()
         {
-            var artists = client.SearchArtist("Evanescence");
+            var artists = client.SearchArtist("Evanescence", 10);
 
             Assert.IsNotNull(artists);
             Assert.AreEqual(10, artists.Count);

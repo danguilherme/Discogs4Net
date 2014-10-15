@@ -29,7 +29,7 @@ namespace Discogs4Net.Data.Service
 
         public PaginatedList<ArtistRelease> GetByArtistId(long id, int perPage = 50, int pageIndex = 1)
         {
-            return Request.Get<ArtistRelease.List>(String.Format(Url.Release.RetrieveByArtist, id, perPage, pageIndex));
+            return Request.Get<ArtistRelease.List>(String.Format(Url.Release.RetrieveByArtist, id, perPage, pageIndex)).ToPaginatedList();
         }
 
         #endregion

@@ -102,10 +102,10 @@ namespace Discogs4Net.Test
         {
             //374434
             //http://www.discogs.com/Evanescence-Evanescence/master/374434
-            var masters = client.GetMasterVersions(374434);
+            var masters = client.GetMasterVersions(374434, 10);
 
-            Assert.AreEqual(50, masters.Pagination.ItemsPerPage);
-            Assert.AreEqual(11, masters.Count);
+            Assert.AreEqual(10, masters.Pagination.ItemsPerPage);
+            Assert.AreEqual(10, masters.Count);
 
             masters = client.GetMasterVersions(374434, 5);
 
