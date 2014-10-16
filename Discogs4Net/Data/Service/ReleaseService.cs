@@ -1,4 +1,5 @@
-﻿using Discogs4Net.Data.Pagination;
+﻿using Discogs4Net.Connection;
+using Discogs4Net.Data.Pagination;
 using Discogs4Net.Model;
 using Discogs4Net.Model.Enumerator;
 using Discogs4Net.Model.Release;
@@ -19,6 +20,8 @@ namespace Discogs4Net.Data.Service
                 public const string RetrieveByArtist = Base + "artists/{0}/releases?per_page={1}&page={2}";
             }
         }
+
+        public ReleaseService(Request requestConfig) : base(requestConfig) { }
 
         #region Methods
 

@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ArtistTest.cs" />
+    <Compile Include="OAuthTest.cs" />
     <Compile Include="ReleaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

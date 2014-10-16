@@ -1,4 +1,5 @@
-﻿using Discogs4Net.Data;
+﻿using Discogs4Net.Connection;
+using Discogs4Net.Data;
 using Discogs4Net.Data.Pagination;
 using Discogs4Net.Model;
 using System;
@@ -17,9 +18,12 @@ namespace Discogs4Net.Data.Service
 
         protected Request Request { get; private set; }
 
-        public BaseService()
+        public BaseService(Request requestConfig)
         {
-            Request = new Request();
+            if (requestConfig == null)
+                throw new ArgumentException("Request configuration is mandatory to instantiate a service.");
+
+            Request = requestConfig;
         }
 
         /// <summary>

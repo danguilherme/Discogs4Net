@@ -43,7 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DiscogsClient.cs" />
+    <Compile Include="Connection\OAuthConfiguration.cs" />
+    <Compile Include="Connection\DiscogsClient.cs" />
     <Compile Include="Data\Pagination\PageNavigation.cs" />
     <Compile Include="Data\Pagination\PaginatedList.cs" />
     <Compile Include="Data\Pagination\Paging.cs" />
@@ -52,6 +53,12 @@
     <Compile Include="Data\Service\ImageService.cs" />
     <Compile Include="Data\Service\MasterService.cs" />
     <Compile Include="Data\Service\ReleaseService.cs" />
+    <Compile Include="Library.cs" />
+    <Compile Include="Library.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Library.settings</DependentUpon>
+    </Compile>
     <Compile Include="Model\Artist\Artist.cs" />
     <Compile Include="Model\Community\Community.cs" />
     <Compile Include="Model\Community\Rating.cs" />
@@ -78,10 +85,15 @@
     <Compile Include="Model\Release\Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\ContractResolver\DeliminatorSeparatedPropertyNamesContractResolver.cs" />
-    <Compile Include="Data\Request.cs" />
+    <Compile Include="Connection\Request.cs" />
     <Compile Include="Data\ContractResolver\SnakeCasePropertyNamesContractResolver.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Library.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Library.Designer.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

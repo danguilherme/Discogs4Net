@@ -4,6 +4,7 @@ using Discogs4Net.Model.Release;
 using Discogs4Net.Model.Release.Variations;
 using System.Linq;
 using System;
+using Discogs4Net.Connection;
 
 namespace Discogs4Net.Data.Service
 {
@@ -18,6 +19,8 @@ namespace Discogs4Net.Data.Service
                 public const string ListVersions = Base + "masters/{0}/versions?per_page={1}&page={2}";
             }
         }
+
+        public MasterService(Request requestConfig) : base(requestConfig) { }
 
         public override Master GetById(long id)
         {

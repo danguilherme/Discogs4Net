@@ -6,6 +6,7 @@ using Discogs4Net.Model.Artist;
 using Discogs4Net.Data.Pagination;
 using Discogs4Net.Model;
 using System.Text.RegularExpressions;
+using Discogs4Net.Connection;
 
 namespace Discogs4Net.Data.Service
 {
@@ -19,6 +20,8 @@ namespace Discogs4Net.Data.Service
                 public const string Search = Base + "database/search?type=artist&q={0}&per_page={1}&page={2}";
             }
         }
+
+        public ArtistService(Request requestConfig) : base(requestConfig) { }
 
         public override PaginatedList<Artist> Search(string query, int perPage = 50, int pageIndex = 1)
         {

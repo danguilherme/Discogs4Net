@@ -4,6 +4,7 @@ using Discogs4Net.Model.Artist;
 using NUnit.Framework;
 using System.Linq;
 using Discogs4Net.Model.Enumerator;
+using Discogs4Net.Connection;
 
 namespace Discogs4Net.Test
 {
